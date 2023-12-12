@@ -20,7 +20,7 @@ function Book(title, author, pages, read) {
         } else if (read === "false") {
             this.bookStatus = "not yet read";
         }
-    }
+    };
     this.bookStatusAssignment();
     this.info = () => { return `${title} by ${author}, ${pages} pages, with status ${this.bookStatus} has been added.`; };
 }
@@ -36,7 +36,7 @@ function addBookToLibrary() {
 }
 
 function renderTable() {
-    tableOutput = myLibrary.map(book => `<tr><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.bookStatus}</td></tr>`).join('');
+    tableOutput = myLibrary.map(book => `<tr data-object-id="${myLibrary.indexOf(book)}"><td>${book.title}</td><td>${book.author}</td><td>${book.pages}</td><td>${book.bookStatus}</td></tr>`).join('');
 }
 
 form.addEventListener('submit', (e) => {
@@ -45,8 +45,6 @@ form.addEventListener('submit', (e) => {
     renderTable();
     document.querySelector("#myTable tbody").innerHTML = tableOutput;
     form.reset();
-    console.log(statusInput.value);
-    console.log(myLibrary);
 });
 
 resetButton.addEventListener('click', () => {
